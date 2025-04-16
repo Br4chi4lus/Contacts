@@ -1,2 +1,2 @@
-export const API_PATH = "https://localhost:7098/api/";
+export const API_PATH = "http://localhost:5290/api/";
 export const TOKEN_NAME = "Contacts-token";
