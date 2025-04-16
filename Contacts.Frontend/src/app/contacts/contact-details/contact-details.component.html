@@ -1,0 +1,15 @@
+<div *ngIf="errorMessage === '' && contact">
+  <h1>{{ contact.name }}</h1>
+  <h2>Full name: {{ contact.user.firstName }} {{ contact.user.lastName }}</h2>
+  <h2>Email: {{ contact.user.email }}</h2>
+  <h2>Phone number: {{ contact.user.phoneNumber }}</h2>
+  <h2>Date of birth: {{ contact.user.dateOfBirth.split('T')[0] }}</h2>
+  <h2>Category: {{ contact.contactCategory }}</h2>
+  <h2 *ngIf="contact.businessContactSubCategory != null">Sub Category: {{ contact.businessContactSubCategory }}</h2>
+  <h2 *ngIf="contact.subCategoryName != null">Sub Category: {{ contact.subCategoryName }}</h2>
+  <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+  <button class="btn btn-primary" (click)="onEdit()">Edit</button>
+</div>
+<div *ngIf="errorMessage !== ''" class="text-danger">
+  {{ errorMessage }}
+</div>

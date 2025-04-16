@@ -50,8 +50,15 @@ builder.Services.AddAuthentication(options =>
     };
 });
 builder.Services.AddSingleton(authenticationSettings);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", builder =>
+        builder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins("https://localhost:4200"));
+});
 var app = builder.Build();
-
+app.UseCors("Frontend");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

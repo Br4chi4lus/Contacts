@@ -39,6 +39,25 @@ namespace Contacts.API.Services
             return contactDtos;
         }
 
+        public async Task<ContactDto> GetContactById(int userId, int contactId)
+        {
+            var id = _userContextService.GetUserId;
+            if (id is null)
+                throw new UnathorizedException("You are not logged in.");
+            var contact = await _dbContext.Contact
+                .Include(c => c.User)
+                .Include(c => c.SubCategory)
+                .Include(c => c.Category)
+                .FirstOrDefaultAsync(c => c.Id == contactId);
+
+            if (contact is null)
+                throw new NotFoundException("Contact with given id was not found");
+            if (userId != contact.OwnerId || userId != id)
+                throw new ForbidenException();
+
+            var dto = _mapper.Map<ContactDto>(contact);
+            return dto;
+        }
         public async Task<ContactDto> CreateContact(int userId, CreateContactDto dto)
         {
             var id = _userContextService.GetUserId;
@@ -112,6 +131,22 @@ namespace Contacts.API.Services
             var updatedContactDto = _mapper.Map<ContactDto>(updatedContact);
             return updatedContactDto;
         }
+
+        public async Task<IEnumerable<ContactCategoryDto>> GetAllContactCategories()
+        {
+            var categories = await _dbContext.ContactCategory.ToListAsync();
+            var dtos = _mapper.Map<List<ContactCategoryDto>>(categories);
+
+            return dtos;
+        }
+
+        public async Task<IEnumerable<BusinessContactSubCategoryDto>> GetAllBusinessContactSubCategories()
+        {
+            var subCategories = await _dbContext.BusinessContactSubCategory.ToListAsync();
+            var dtos = _mapper.Map<List<BusinessContactSubCategoryDto>>(subCategories);
+
+            return dtos;
+        }
     }
     public interface IContactService
     {
@@ -119,5 +154,8 @@ namespace Contacts.API.Services
         Task<ContactDto> CreateContact(int userId, CreateContactDto dto);
         Task DeleteContact(int contactId);
         Task<ContactDto> UpdateContact(int contactId, UpdateContactDto dto);
+        Task<IEnumerable<BusinessContactSubCategoryDto>> GetAllBusinessContactSubCategories();
+        Task<IEnumerable<ContactCategoryDto>> GetAllContactCategories();
+        Task<ContactDto> GetContactById(int userId, int contactId);
     }
 }

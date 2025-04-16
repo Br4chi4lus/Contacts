@@ -24,6 +24,14 @@ namespace Contacts.API.Controllers
             return Ok(contacts);
         }
 
+        [HttpGet("{contactId}")]
+        public async Task<IActionResult> GetContactById([FromRoute] int userId, [FromRoute] int contactId)
+        {
+            var contact = await _contactService.GetContactById(userId, contactId);
+
+            return Ok(contact);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateContact([FromRoute] int userId, [FromBody] CreateContactDto createContactDto)
         {
@@ -45,6 +53,22 @@ namespace Contacts.API.Controllers
             var updatedContact = await _contactService.UpdateContact(contactId, updateContactDto);
 
             return Ok(updatedContact);
+        }
+
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetAllContactCategories()
+        {
+            var categories = await _contactService.GetAllContactCategories();
+
+            return Ok(categories);
+        }
+
+        [HttpGet("subcategories")]
+        public async Task<IActionResult> GetAllBusinessContactSubCategories()
+        {
+            var subCategories = await _contactService.GetAllBusinessContactSubCategories();
+
+            return Ok(subCategories);
         }
     }
 }

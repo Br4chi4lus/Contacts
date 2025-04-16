@@ -11,9 +11,11 @@ namespace Contacts.API
             CreateMap<Contact, ContactDto>()
                 .ForMember(d => d.ContactCategory,
                 opt => opt.MapFrom(c => c.Category.Name))
-                .ForMember(d => d.BusinnesContactSubCategory,
+                .ForMember(d => d.BusinessContactSubCategory,
                 opt => opt.MapFrom(c => c.SubCategory.Name));
             CreateMap<CreateContactDto, Contact>();
+            CreateMap<ContactCategory, ContactCategoryDto>();
+            CreateMap<BusinessContactSubCategory, BusinessContactSubCategoryDto>();
         }
     }
 }
