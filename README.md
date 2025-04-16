@@ -18,6 +18,7 @@ cd Contacts.Frontend
 npm install
 ng serve 
 ```
+Frontend dostępny pod adresem: http://localhost:4200/
 # Wykorzystane biblioteki
 * Entity Framework
 * Automapper
@@ -80,4 +81,29 @@ Klasy używane do interakcji z użytkownikiem - nazwy tłumaczą do czego są u�
 ## ContactsMappingProfile
 Klasa do Automappera używana do mapowania dto na encje i odwrotnie.
 ## AuthenticationSettings
-Klasa pomocnicza do JWT, przechowuje informacje do generowania tokenów.
+Klasa pomocnicza do JWT, przechowuje informacje do generowania tokenów.  
+
+## ContactCreateComponent
+Komponent z formularzem do tworzenia kontaktu.
+## ContactDetailsComponent
+Komponent do prezentacji szczegółów kontaktu.
+## ContactEditComponent
+Komponent z formularzem do edycji kontaktu.
+## ContactsTableComponent
+Komponent do prezentacji listy kontaktów.
+## LoginFormComponent
+Komponent z formularzem do logowania użytkownika.
+## RegisterFormComponent
+Komponent z formularzem do rejestracji użytkownika.
+## UsersTableComponent
+Komponent do prezentacji wszystkich użytkowników.
+## UserDetailsComponent
+Komponent do szczegółowej prezentacji użytkownika.
+## LogoutComponent
+Komponent do wylogowywania.
+## AuthInterceptor
+Interceptor do dołączania tokena JWT do zapytania.
+## AuthService
+Serwis do pobierania informacji z tokena JWT.
+## Dtos
+Podobnie jak w backendzie dto do łatwiejszego modelowania danych.
