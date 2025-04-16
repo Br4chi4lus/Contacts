@@ -1,0 +1,21 @@
+<h1>Log in!</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <Label>Email</Label>
+    <input formControlName="email" class="form-control" type="email">
+    <div *ngIf="submitted && loginForm.get('email')?.invalid" class="text-danger">
+      Email is invalid
+    </div>
+  </div>
+  <div class="mb-3">
+    <Label>Password</Label>
+    <input formControlName="password" class="form-control" type="password">
+    <div *ngIf="submitted && loginForm.get('password')?.invalid" class="text-danger">
+      Password is invalid
+    </div>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+    {{ errorMessage }}
+  </div>
+  <button class="btn btn-primary" type="submit">Log in</button>
+</form>

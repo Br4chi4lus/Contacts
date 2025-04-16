@@ -1,0 +1,44 @@
+<div *ngIf="contact">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label>Name:</label>
+      <input formControlName="name" class="form-control">
+      <div *ngIf="submitted && editForm.get('name')?.errors" class="text-danger">
+        Field is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Category:</label>
+      <div *ngFor="let category of categories">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="categoryId" value="{{ category.id }}" id="{{ category.name }}">
+          <label class="form-check-label" for="{{ category.name }}">{{ category.name }}</label>
+        </div>
+      </div>
+      <div *ngIf="submitted && editForm.get('categoryId')?.errors" class="text-danger">
+        Field is required
+      </div>
+    </div>
+    <div *ngIf="editForm.get('categoryId')?.value == 2" class="mb-3">
+      <label>Sub category:</label>
+      <div *ngFor="let subCategory of subCategories">
+        <input class="form-check-input" type="radio" formControlName="subCategoryId" value="{{ subCategory.id}}">
+        <label class="form-check-label" for="{{ subCategory.name}}">{{ subCategory.name }}</label>
+
+      </div>
+      <div *ngIf="submitted && editForm.get('subCategoryId')?.errors" class="text-danger">
+        Field is required
+      </div>
+    </div>
+    <div *ngIf="editForm.get('categoryId')?.value == 3" class="mb-3">
+      <label>Sub category name:</label>
+      <input class="form-control" formControlName="subCategoryName">
+      <div *ngIf="submitted && editForm.get('subCategoryName')?.errors" class="text-danger">
+        Field is required
+      </div>
+    </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+  <button class="btn-danger btn" (click)="onBack()">Back</button>
+</div>

@@ -1,0 +1,26 @@
+<div *ngIf="errorMessage === ''">
+  <h1>Your contacts</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover text-center">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Name</td>
+          <td>First Name</td>
+          <td>Last Name</td>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contact of contacts" [routerLink]="['/contacts', contact.id]">
+        <td>{{ contact.id }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.user.firstName }}</td>
+        <td>{{ contact.user.lastName }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="errorMessage !== ''" class="text-danger">
+  {{ errorMessage }}
+</div>

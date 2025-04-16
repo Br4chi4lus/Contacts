@@ -1,0 +1,76 @@
+<h2>Register here!</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label>Email</label>
+    <input formControlName="email" class="form-control" type="email"/>
+    <div *ngIf="submitted && registerForm.controls['email'].invalid" class="text-danger">
+      Valid email is required.
+    </div>
+    <div *ngIf="registerForm.get('email')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('email')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Password</label>
+    <input formControlName="password" class="form-control" type="password"/>
+    <div *ngIf="submitted && registerForm.controls['password'].invalid" class="text-danger">
+      Password is required.
+    </div>
+    <div *ngIf="registerForm.get('password')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('password')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Confirm Password</label>
+    <input formControlName="confirmPassword" class="form-control" type="password"/>
+    <div *ngIf="submitted && registerForm.controls['confirmPassword'].invalid" class="text-danger">
+      Confirmation of password is required.
+    </div>
+    <div *ngIf="registerForm.get('confirmPassword')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('confirmPassword')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>First Name</label>
+    <input formControlName="firstName" class="form-control"/>
+    <div *ngIf="submitted && registerForm.controls['firstName'].invalid" class="text-danger">
+      First name is required.
+    </div>
+    <div *ngIf="registerForm.get('firstName')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('firstName')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Last Name</label>
+    <input formControlName="lastName" class="form-control"/>
+    <div *ngIf="submitted && registerForm.controls['lastName'].invalid" class="text-danger">
+      Last name is required.
+    </div>
+    <div *ngIf="registerForm.get('lastName')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('lastName')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Phone Number</label>
+    <input formControlName="phoneNumber" class="form-control"/>
+    <div *ngIf="submitted && registerForm.controls['phoneNumber'].invalid" class="text-danger">
+      Valid phone number is required.
+    </div>
+    <div *ngIf="registerForm.get('phoneNumber')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('phoneNumber')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label>Date of Birth</label>
+    <input formControlName="dateOfBirth" class="form-control" type="date"/>
+    <div *ngIf="submitted && registerForm.controls['dateOfBirth'].invalid" class="text-danger">
+      Date of birth is required.
+    </div>
+    <div *ngIf="registerForm.get('dateOfBirth')?.errors?.['serverError']" class="text-danger">
+      {{ registerForm.get('dateOfBirth')?.errors?.['serverError'] }}
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Register</button>
+  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</form>

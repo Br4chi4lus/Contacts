@@ -1,0 +1,12 @@
+<div *ngIf="user">
+  <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+  <h2>Email: {{ user.email }}</h2>
+  <h2>Phone number: {{ user.phoneNumber }}</h2>
+  <h2>Date of birth: {{ user.dateOfBirth.split('T')[0] }}</h2>
+  <div *ngIf="userId">
+    <button class="btn btn-primary" (click)="onClick()">Create contact</button>
+  </div>
+</div>
+<div *ngIf="!user">
+  <h1>{{ errorMessage }}</h1>
+</div>
